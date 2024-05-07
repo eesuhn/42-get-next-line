@@ -1,0 +1,11 @@
+# build
+*.o
+*.out
+
+# cache
+*.sw*
+.vscode/
+.DS_Store/
+
+# tester
+test*
