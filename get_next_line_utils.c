@@ -24,22 +24,29 @@ size_t	ft_strlen(const char *str)
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*res;
-	size_t	s_len;
-	size_t	res_len;
+	char	*str;
+	size_t	i;
 
+	i = 0;
 	if (!s)
 		return (NULL);
-	s_len = ft_strlen(s);
-	if (start > s_len)
-		return (ft_strdup(""));
-	s_len -= start;
-	res_len = (s_len * (s_len < len)) + (len * (s_len >= len)) + 1;
-	res = (char *)malloc(res_len);
-	if (!res)
+	if (start >= ft_strlen(s))
+	{
+		str = (char *)malloc(sizeof(char));
+		if (!str)
+			return (NULL);
+		str[0] = '\0';
+		return (str);
+	}
+	if (ft_strlen(s + start) < len)
+		len = ft_strlen(s + start);
+	str = (char *)malloc((len + 1) * sizeof(char));
+	if (!str)
 		return (NULL);
-	ft_strlcpy(res, s + start, res_len);
-	return (res);
+	while (i < len)
+		str[i++] = s[start++];
+	str[i] = '\0';
+	return (str);
 }
 
 void	*ft_memset(void *s, int c, size_t n)
@@ -77,4 +84,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	res[s1_len + s2_len] = '\0';
 	return (res);
+}
+
+int	check_end_index(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			return (i);
+		i++;
+	}
+	return (-1);
 }
