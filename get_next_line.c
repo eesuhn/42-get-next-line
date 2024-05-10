@@ -14,5 +14,9 @@
 
 char	*get_next_line(int fd)
 {
-	return (NULL);
+	char		*res;
+	static char	*line;
+
+	if (fd < 0 || read(fd, NULL, 0) < 0)
+		return (NULL);
 }
