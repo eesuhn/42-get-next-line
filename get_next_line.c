@@ -53,6 +53,8 @@ char	*read_line(int fd, char *line)
 			return (NULL);
 		}
 		line = join_line(line, buf);
+		if (check_end_index(line) != -1)
+			break ;
 	}
 	free(buf);
 	return (line);
