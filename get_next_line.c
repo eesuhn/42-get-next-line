@@ -74,19 +74,14 @@ char	*get_res(char *line)
 	char	*res;
 	int		end_i;
 
+	if (line[0] == '\0')
+		return (NULL);
 	end_i = check_end_index(line);
 	if (end_i != -1)
-	{
 		res = ft_substr(line, 0, end_i + 1);
-		return (res);
-	}
-	else if (line[0] == '\0')
-		return (NULL);
 	else
-	{
 		res = ft_substr(line, 0, ft_strlen(line));
-		return (res);
-	}
+	return (res);
 }
 
 char	*next_line(char *line)
