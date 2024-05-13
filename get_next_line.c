@@ -17,7 +17,7 @@ char	*get_next_line(int fd)
 	char		*res;
 	static char	*line;
 
-	if (fd < 0 || read(fd, NULL, 0) < 0)
+	if (fd == -1 || read(fd, NULL, 0) == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!line)
 	{
@@ -47,7 +47,7 @@ char	*read_line(int fd, char *line)
 	{
 		ft_memset(buf, 0, BUFFER_SIZE + 1);
 		status = read(fd, buf, BUFFER_SIZE);
-		if (status < 0)
+		if (status == -1)
 		{
 			free(buf);
 			return (NULL);
@@ -91,7 +91,7 @@ char	*next_line(char *line)
 
 	end_i = check_end_index(line);
 	if (end_i != -1)
-		res = ft_substr(line, end_i + 1, ft_strlen(line));
+		res = ft_substr(line, end_i + 1, ft_strlen(line) - end_i - 1);
 	else
 		res = NULL;
 	free(line);
