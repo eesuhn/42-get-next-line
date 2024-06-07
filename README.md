@@ -11,3 +11,7 @@ Function to read a line from a file descriptor.
 	```c
 	char	*get_next_line(int fd)
 	```
+
+#### Some takeaways 🌱
+1. Learned about <b>static variables</b>, and how they can be used to store data between function calls.
+2. As well as managing <b>buffers</b> and memory allocation.
